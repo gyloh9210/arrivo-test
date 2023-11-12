@@ -8,6 +8,9 @@ const config = {
   },
   server: {
     port: process.env.SERVER_PORT
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET
   }
 };
 module.exports = config;
