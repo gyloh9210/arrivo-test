@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const config = require("./config");
-const userController = require("./controllers/userController");
+const adminUserController = require("./controllers/admin/userController");
 const adminController = require("./controllers/adminController");
 const adminCategoryController = require("./controllers/admin/categoryController")
 const adminPostController = require("./controllers/admin/postController")
@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
-app.use("/user", userController);
 app.use("/admin", adminController);
+app.use("/admin/user", adminUserController);
 app.use("/admin/category", adminCategoryController);
 app.use("/admin/post", adminPostController);
 

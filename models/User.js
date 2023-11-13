@@ -1,7 +1,9 @@
 const db = require("../utils/db");
 
 async function getUsers() {
-  const result = await db.query(`SELECT * FROM Users`);
+  const result = await db.query(
+    `SELECT UserID, Username, Email, Fullname, Membership, Admin, CreatedAt FROM Users`
+  );
 
   return result;
 }
@@ -32,8 +34,56 @@ async function createUser({
   return result;
 }
 
+async function updateUser({
+  hashedPassword,
+  email,
+  name,
+  membership,
+  username,
+  id
+}) {
+  const inputs = [];
+  const values = [];
+
+  if (hashedPassword) {
+    inputs.push("Password = ?");
+    values.push(hashedPassword);
+  }
+
+  if (email) {
+    inputs.push("Email = ?");
+    values.push(email);
+  }
+
+  if (name) {
+    inputs.push("Fullname = ?");
+    values.push(name);
+  }
+
+  if (membership) {
+    inputs.push("Membership = ?");
+    values.push(membership);
+  }
+
+  if (username) {
+    inputs.push("Username = ?");
+    values.push(username);
+  }
+
+  await db.query(`UPDATE Users SET ${inputs.join(",")} WHERE UserID = ?`, [
+    ...values,
+    id,
+  ]);
+}
+
+async function deleteUser(id) {
+  await db.query("DELETE FROM Users WHERE UserID = ?", [id]);
+}
+
 module.exports = {
   getUsers,
   createUser,
   findUser,
+  deleteUser,
+  updateUser,
 };
