@@ -4,6 +4,7 @@ const config = require("./config");
 const userController = require("./controllers/userController");
 const adminController = require("./controllers/adminController");
 const adminCategoryController = require("./controllers/admin/categoryController")
+const adminPostController = require("./controllers/admin/postController")
 
 const app = express();
 const port = config.server.port;
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/user", userController);
 app.use("/admin", adminController);
 app.use("/admin/category", adminCategoryController);
+app.use("/admin/post", adminPostController);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
