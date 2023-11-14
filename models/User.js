@@ -9,11 +9,23 @@ async function getUsers() {
 }
 
 async function findUser(email) {
-  const result = await db.query(`SELECT * FROM Users WHERE email = ?`, [email]);
+  const result = await db.query(`SELECT * FROM Users WHERE Email = ? AND Admin = 0`, [email]);
 
   if (result.length > 0) {
     return result[0];
   }
+
+  return undefined;
+}
+
+async function findAdmin(email) {
+  const result = await db.query(`SELECT * FROM Users WHERE Email = ? AND Admin = 1`, [email]);
+
+  if (result.length > 0) {
+    return result[0];
+  }
+  
+  return undefined;
 }
 
 async function createUser({
@@ -86,4 +98,5 @@ module.exports = {
   findUser,
   deleteUser,
   updateUser,
+  findAdmin
 };

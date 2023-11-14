@@ -12,7 +12,7 @@ router.post(
   async function (req, res, next) {
     const { email, password } = req.body;
 
-    const user = await UserModel.findUser(email);
+    const user = await UserModel.findAdmin(email);
 
     const isPasswordCorrect = await comparePassword(password, user.Password);
 
