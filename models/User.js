@@ -47,11 +47,11 @@ async function createUser({
 }
 
 async function updateUser({
-  hashedPassword,
-  email,
-  name,
-  membership,
-  username,
+  hashedPassword = null,
+  email = null,
+  name = null,
+  membership = null,
+  username = null,
   id
 }) {
   const inputs = [];
