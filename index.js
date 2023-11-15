@@ -9,6 +9,9 @@ const adminPostController = require("./controllers/admin/postController");
 const authController = require("./controllers/authController");
 const categoryController = require("./controllers/categoryController");
 const postController = require("./controllers/postController");
+const accountController = require("./controllers/accountController");
+
+const webhookController = require("./controllers/billplzWebhook");
 
 const app = express();
 const port = config.server.port;
@@ -31,6 +34,9 @@ app.use("/admin/post", adminPostController);
 app.use("/auth", authController);
 app.use("/category", categoryController);
 app.use("/post", postController);
+app.use("/account", accountController);
+
+app.use("/webhook", webhookController);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
