@@ -4,7 +4,7 @@ async function getPosts(type = "none", status = "none") {
   const conditions = [];
 
   if (type === "premium") {
-    conditions.push("Label = 'Premium'");
+    conditions.push("Label IN ('Premium', 'Normal')");
   } else if (type === "normal") {
     conditions.push("Label = 'Normal'");
   }
