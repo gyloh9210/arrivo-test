@@ -26,6 +26,7 @@ router.post("/login", validate(postLoginSchema), async function (req, res) {
       email: user.Email,
       admin: user.Admin,
       membership: user.Membership,
+      userId: user.UserID
     });
 
     return res.json({ token });
