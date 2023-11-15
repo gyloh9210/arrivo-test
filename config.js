@@ -7,10 +7,15 @@ const config = {
     connectTimeout: 60000,
   },
   server: {
-    port: process.env.SERVER_PORT
+    port: process.env.SERVER_PORT,
   },
   jwt: {
-    secret: process.env.JWT_SECRET
-  }
+    secret: process.env.JWT_SECRET,
+  },
+  billplz: {
+    secret: process.env.BILLPLZ_SECRET,
+    api: process.env.BILLPLZ_API,
+    callback: process.env.BILLPLZ_CALLBACK,
+  },
 };
 module.exports = config;
